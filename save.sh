@@ -28,5 +28,5 @@ then
 fi 
 
 
-tar --exclude='bakup' --exclude='.idea' --exclude='__pycache__' --exclude='.git' -zcvf "${file_name}" "${src_folder}"
+tar --exclude='temp_files' --exclude='bakup' --exclude='.idea' --exclude='__pycache__' --exclude='.git' -zcvf "${file_name}" "${src_folder}"
 
