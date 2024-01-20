@@ -9,6 +9,7 @@ pip install python-decouple databases
 pip install pyjwt
 pip install passlib
 pip install black
+pip install boto3
 
 
 # After creating the models: user.py and complaint.py in models folder, we need to migrate
