@@ -8,6 +8,7 @@ pip install psycopg2 psycopg2-binary sqlalchemy
 pip install python-decouple databases
 pip install pyjwt
 pip install passlib
+pip install black
 
 
 # After creating the models: user.py and complaint.py in models folder, we need to migrate
@@ -31,3 +32,6 @@ alembic upgrade head
 
 # We set the user to admin from the Pycharm IDE.
 
+
+# To format the code
+black managers/* models/* resources/* schemas/* main.py db.py

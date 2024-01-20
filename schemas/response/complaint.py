@@ -7,5 +7,3 @@ class ComplaintOut(BaseComplaint):
     id: int
     created_at: datetime
     status: ComplaintState
-
-

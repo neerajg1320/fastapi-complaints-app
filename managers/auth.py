@@ -17,7 +17,7 @@ class AuthManager:
         try:
             payload = {
                 "sub": _user["id"],
-                "exp": datetime.utcnow() + timedelta(minutes=120)
+                "exp": datetime.utcnow() + timedelta(minutes=120),
             }
 
             return jwt.encode(payload, config("SECRET_KEY"), algorithm="HS256")
@@ -34,8 +34,12 @@ class CustomHttpBearer(HTTPBearer):
         res = await super().__call__(request)
 
         try:
-            payload = jwt.decode(res.credentials, config("SECRET_KEY"), algorithms=["HS256"])
-            user_data = await database.fetch_one(user.select().where(user.c.id == payload["sub"]))
+            payload = jwt.decode(
+                res.credentials, config("SECRET_KEY"), algorithms=["HS256"]
+            )
+            user_data = await database.fetch_one(
+                user.select().where(user.c.id == payload["sub"])
+            )
             request.state.user = user_data
             return user_data
         except jwt.ExpiredSignatureError as ex:
