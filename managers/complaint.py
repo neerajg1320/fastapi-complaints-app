@@ -66,3 +66,8 @@ class ComplaintManager:
             .where(complaint.c.id == id_)
             .values(status=ComplaintState.rejected)
         )
+        # Later we will replace it with the user's email
+        ses.send_mail("Complaint Rejected",
+                      ["neeraj76@yahoo.com"],
+                      "Your claim has been rejected"
+                      )
