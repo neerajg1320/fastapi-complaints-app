@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+psycopg2
+psycopg2-binary
+sqlalchemy
+python-decouple
+databases
+pyjwt
+passlib
+
+# bcrypt has compatibility issue with passlib, we need to stick to 4.0.1 for now.
+bcrypt==4.0.1
+

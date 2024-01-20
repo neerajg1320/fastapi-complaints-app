@@ -14,7 +14,7 @@ then
 fi
 
 src_folder="./"
-bakup_folder="../complains_bakup"
+bakup_folder="../complaints_bakup"
 file_name="${bakup_folder}/complaints_${version}_${tag}.tgz"
 echo ${file_name}
 
