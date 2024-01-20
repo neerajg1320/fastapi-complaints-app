@@ -14,13 +14,16 @@ then
 fi
 
 src_folder="./"
-bakup_folder="bakup"
+bakup_folder="../complains_bakup"
 file_name="${bakup_folder}/complaints_${version}_${tag}.tgz"
 echo ${file_name}
 
+# Create folder if not exists
+mkdir -p ${bakup_folder}
+
 if [ -f ${file_name} ] 
 then
-  echo "Error! The file with specified suffix already exists."
+  echo "Error! The bakup file already exists. Change version and/or tag."
   exit 1
 fi 
 
