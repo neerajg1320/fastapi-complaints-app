@@ -29,4 +29,5 @@ alembic upgrade head
 alembic revision --autogenerate -m "user_corrections"
 alembic upgrade head
 
+# We set the user to admin from the Pycharm IDE.
 

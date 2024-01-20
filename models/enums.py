@@ -8,6 +8,6 @@ class RoleType(enum.Enum):
 
 
 class ComplaintState(enum.Enum):
-    pending = "Pending"
-    approved = "Approved"
-    rejected = "Rejected"
+    pending = "pending"
+    approved = "approved"
+    rejected = "rejected"
