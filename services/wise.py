@@ -1,5 +1,5 @@
 import requests
-import json
+from fastapi  import HTTPException
 from decouple import config
 
 
@@ -19,6 +19,8 @@ class WiseService:
             response = response.json()
             # return [el["id"] for el in response]
             return [el["id"] for el in response if el["type"] == "PERSONAL"]
+        print(response)
+        raise HTTPException(500, "Payment provider is not available")
 
 if __name__ == "__main__":
     w = WiseService()
