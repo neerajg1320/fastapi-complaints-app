@@ -1,0 +1,73 @@
+[
+  {
+    "type": "BUSINESS",
+    "id": 17092798,
+    "userId": 6453710,
+    "type": "BUSINESS",
+    "address": {
+      "addressFirstLine": "Prestige Atlanta, Koramangala",
+      "city": "Bengaluru",
+      "countryIso2Code": "IN",
+      "countryIso3Code": "ind",
+      "postCode": "560034",
+      "stateCode": null
+    },
+    "email": "",
+    "createdAt": "2024-01-21T05:20:39",
+    "updatedAt": "2024-01-21T05:20:44",
+    "creatorClientId": "transferwise_web",
+    "obfuscated": false,
+    "currentState": "VISIBLE",
+    "businessName": "Neeraj Gupta",
+    "registrationNumber": "00000000000000000000",
+    "descriptionOfBusiness": "IT_DEVELOPMENT",
+    "companyType": "SOLE_TRADER",
+    "businessFreeFormDescription": "An individual freelancer. Hire teams on need basis.",
+    "firstLevelCategory": "CONSULTING_IT_BUSINESS_SERVICES",
+    "secondLevelCategory": "IT_DEVELOPMENT",
+    "operationalAddresses": [
+      {
+        "addressFirstLine": "Prestige Atlanta, Koramangala",
+        "city": "Bengaluru",
+        "countryIso2Code": "IN",
+        "countryIso3Code": "ind",
+        "postCode": "560034",
+        "stateCode": null
+      }
+    ],
+    "onboardingFlow": "DEFAULT",
+    "fullName": "Neeraj Gupta"
+  },
+  {
+    "type": "PERSONAL",
+    "id": 17092799,
+    "userId": 6453710,
+    "type": "PERSONAL",
+    "address": {
+      "addressFirstLine": "Prestige Atlanta, Koramangala",
+      "city": "Bengaluru",
+      "countryIso2Code": "IN",
+      "countryIso3Code": "ind",
+      "postCode": "560034",
+      "stateCode": null
+    },
+    "email": "",
+    "createdAt": "2024-01-21T05:21:27",
+    "updatedAt": "2024-01-21T05:21:27",
+    "obfuscated": false,
+    "currentState": "HIDDEN",
+    "firstName": "Neeraj",
+    "lastName": "Gupta",
+    "dateOfBirth": "1977-06-03",
+    "phoneNumber": "+918861312345",
+    "occupation": "SELF_EMPLOYED",
+    "occupations": [
+      {
+        "code": "SELF_EMPLOYED",
+        "format": "PREDEFINED"
+      }
+    ],
+    "secondaryAddresses": [],
+    "fullName": "Neeraj Gupta"
+  }
+]

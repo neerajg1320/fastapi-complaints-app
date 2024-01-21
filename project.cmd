@@ -10,7 +10,7 @@ pip install pyjwt
 pip install passlib
 pip install black
 pip install boto3
-
+pip install requests
 
 # After creating the models: user.py and complaint.py in models folder, we need to migrate
 pip install alembic
