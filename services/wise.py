@@ -86,6 +86,19 @@ class WiseService:
        print("Error!", response.json())
        raise HTTPException(500, "Payment provider is not available")
 
+    def fund_transfer(self, transfer_id):
+        url = f"{self.base_url}/v3/profiles/{self.profile_id}/transfers/{transfer_id}/payments/"
+        data = {"type": "BALANCE"}
+        response = requests.post(url, headers=self.headers, data=json.dumps(data))
+        if response.status_code == 200:
+            response = response.json()
+            return response["id"]
+        print("Error!", response.json())
+        raise HTTPException(500, "Payment provider is not available")
+
+
+# The code has been kept for reference purpose
+# For testing purpose
 if __name__ == "__main__":
     w = WiseService()
     print("Profile ID: ", w.profile_id)

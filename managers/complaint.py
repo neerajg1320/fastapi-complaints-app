@@ -1,11 +1,12 @@
 import uuid
 import os
 from constants import TEMP_FILES_FOLDER
-from models import complaint
+from models import complaint, transaction
 from models import RoleType, ComplaintState
 from db import database
 from services.s3 import S3Service
 from services.ses import SESService
+from services.wise import WiseService
 from utils.helpers import decode_photo
 
 
@@ -38,6 +39,13 @@ class ComplaintManager:
         complaint_data['photo_url'] = s3.upload(path, name, extension)
 
         id_ = await database.execute(complaint.insert().values(complaint_data))
+        # We are inserting transaction here ??
+        await ComplaintManager.issue_transaction(
+            complaint_data["amount"],
+            f"{user['first_name']} {user['last_name']}",
+            user["iban"],
+            id_
+        )
         return await database.fetch_one(complaint.select().where(complaint.c.id == id_))
 
     @staticmethod
@@ -53,6 +61,16 @@ class ComplaintManager:
             .where(complaint.c.id == id_)
             .values(status=ComplaintState.approved)
         )
+
+        # TBD: Check if we can prevent this database read
+        transaction_data = database.fetch_one(transaction.select().where(transaction.c.complaint_id == id_))
+
+        # TBD: Need to abstract
+        wise = WiseService()
+
+        # Need to solve by fixing the quote bug
+        # wise.fund_transfer(transaction_data["transfer_id"])
+
         # Later we will replace it with the user's email
         ses.send_mail("Complaint Approved",
                       ["neeraj76@yahoo.com"],
@@ -71,3 +89,22 @@ class ComplaintManager:
                       ["neeraj76@yahoo.com"],
                       "Your claim has been rejected"
                       )
+
+    @staticmethod
+    async def issue_transaction(amount, full_name, iban, complaint_id):
+        wise = WiseService()
+        quote_id = wise.create_quote(amount)
+        recipient_id = wise.create_recipient_account(full_name, iban)
+        # We have commented this as we are facing some problem in sandbox
+        # transfer_id = wise.create_transfer(recipient_id, quote_id)
+        transfer_id = 0x45
+
+        data = {
+            "quote_id": quote_id,
+            "transfer_id": transfer_id,
+            "target_account_id": str(recipient_id),
+            "amount": amount,
+            "complaint_id": complaint_id,
+        }
+
+        await database.execute(transaction.insert().values(**data))
